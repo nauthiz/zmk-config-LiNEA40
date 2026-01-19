@@ -67,7 +67,7 @@
         layers = <SCROLL>;
         input-processors =
             <&zip_xy_transform INPUT_TRANSFORM_Y_INVERT>,
-            //スクロール方向を逆転,,,,,,
+            //スクロール方向を逆転,,,,,,,
             <&zip_xy_to_scroll_mapper>;
     };
 };
@@ -79,11 +79,6 @@
         DeleteKey {
             bindings = <&kp DEL>;
             key-positions = <8 9>;
-        };
-
-        InsertKey {
-            bindings = <&kp INS>;
-            key-positions = <6 7>;
         };
 
         CenterClick {
@@ -114,11 +109,6 @@
         TABKey {
             bindings = <&kp TAB>;
             key-positions = <10 11>;
-        };
-
-        ReturnKey {
-            bindings = <&kp RETURN>;
-            key-positions = <18 19>;
         };
     };
 
