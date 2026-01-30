@@ -67,7 +67,7 @@
         layers = <SCROLL>;
         input-processors =
             <&zip_xy_transform INPUT_TRANSFORM_Y_INVERT>,
-            //スクロール方向を逆転,,,,,,,,,,,,,
+            //スクロール方向を逆転,,,,,,,,,,,,,,
             <&zip_xy_to_scroll_mapper>;
     };
 };
@@ -134,6 +134,15 @@
         };
     };
 
+    macros {
+        ij_search: SEARCH_EVERYWHERE {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp RIGHT_SHIFT &kp RIGHT_SHIFT>;
+            label = "SEARCH_EVERYWHERE";
+        };
+    };
+
     keymap {
         compatible = "zmk,keymap";
 
@@ -159,10 +168,10 @@
 
         MARK {
             bindings = <
-&kp EXCLAMATION  &kp AT       &kp HASH      &kp CARET  &kp DOLLAR                              &kp CARET      &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS  &kp BACKSLASH         &kp SLASH
+&kp EXCLAMATION  &kp AT       &kp HASH      &kp CARET  &kp DOLLAR                              &kp AMPERSAND  &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS  &kp BACKSLASH         &kp SLASH
 &kp QUESTION     &kp PERCENT  &kp ASTERISK  &kp GRAVE  &kp DOUBLE_QUOTES                       &kp COLON      &kp LEFT_BRACE        &kp RIGHT_BRACE        &kp PIPE              &kp UNDERSCORE
 &trans           &trans       &trans        &kp TILDE  &kp SQT                                 &kp SEMICOLON  &kp LEFT_BRACKET      &kp RIGHT_BRACKET      &kp LESS_THAN         &kp GREATER_THAN
-&trans           &trans       &trans        &kp MINUS  &kp PLUS           &kp EQUAL    &trans  &trans                               &kp ASTERISK           &kp LEFT_PARENTHESIS  &kp LS(QUESTION)
+&trans           &trans       &kp MINUS     &kp MINUS  &kp PLUS           &kp EQUAL    &trans  &trans                               &kp ASTERISK           &kp LEFT_PARENTHESIS  &kp LS(QUESTION)
             >;
 
             sensor-bindings = <&re_kp C_VOLUME_DOWN C_VOLUME_UP>;
@@ -170,10 +179,10 @@
 
         CURSOR {
             bindings = <
-&kp NUMBER_1  &kp NUMBER_2    &kp NUMBER_3  &kp NUMBER_4     &kp NUMBER_5                            &kp NUMBER_6    &kp NUMBER_7  &kp NUMBER_8  &kp NUMBER_9     &kp NUMBER_0
-&trans        &kp LEFT_ARROW  &kp DOWN      &kp RIGHT_ARROW  &trans                                  &kp LEFT_ARROW  &kp DOWN      &kp UP_ARROW  &kp RIGHT_ARROW  &trans
-&trans        &trans          &trans        &trans           &trans                                  &trans          &trans        &trans        &trans           &trans
-&trans        &trans          &trans        &trans           &trans        &trans    &kp LANGUAGE_2  &kp LANGUAGE_1                &trans        &trans           &trans
+&kp NUMBER_1  &kp NUMBER_2    &kp NUMBER_3  &kp NUMBER_4     &kp NUMBER_5                                &kp NUMBER_6    &kp NUMBER_7  &kp NUMBER_8  &kp NUMBER_9     &kp NUMBER_0
+&trans        &kp LEFT_ARROW  &kp DOWN      &kp RIGHT_ARROW  &trans                                      &kp LEFT_ARROW  &kp DOWN      &kp UP_ARROW  &kp RIGHT_ARROW  &trans
+&trans        &trans          &trans        &trans           &trans                                      &trans          &trans        &trans        &trans           &trans
+&trans        &trans          &trans        &trans           &trans        &kp ESCAPE    &kp LANGUAGE_2  &kp LANGUAGE_1                &trans        &trans           &trans
             >;
 
             sensor-bindings = <&mouse_scrl SCRL_LEFT SCRL_RIGHT>;
@@ -219,6 +228,17 @@
 &trans  &trans  &kp LA(LC(DOWN_ARROW))  &kp LA(LC(J))           &kp LA(LC(K))                                                 &trans                 &trans    &trans    &trans    &trans
 &trans  &trans  &kp LG(F1)              &trans                  &kp LC(LS(TAB))          &kp LC(TAB)    &kp RG(LEFT_BRACKET)  &kp RG(RIGHT_BRACKET)            &trans    &trans    &trans
             >;
+        };
+
+        APPLICATION {
+            bindings = <
+&trans  &trans  &trans            &trans  &ij_search                    &kp RG(RS(NUMBER_4))  &trans  &trans  &trans  &trans
+&trans  &trans  &trans            &trans  &trans                        &trans                &trans  &trans  &trans  &trans
+&trans  &trans  &trans            &trans  &trans                        &trans                &trans  &trans  &trans  &trans
+&trans  &trans  &kp RG(NUMBER_0)  &trans  &trans      &trans    &trans  &trans                        &trans  &trans  &trans
+            >;
+
+            sensor-bindings = <&inc_dec_kp RG(PLUS) RG(MINUS)>;
         };
     };
 };
