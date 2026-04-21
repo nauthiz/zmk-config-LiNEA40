@@ -67,7 +67,7 @@
         layers = <SCROLL>;
         input-processors =
             <&zip_xy_transform INPUT_TRANSFORM_Y_INVERT>,
-            //スクロール方向を逆転,,,,,,,,,,,,,,
+            //スクロール方向を逆転,,,,,,,,,,,,,,,
             <&zip_xy_to_scroll_mapper>;
     };
 };
@@ -132,6 +132,14 @@
 
             tap-ms = <20>;
         };
+
+        mouse_scrl_high: mouse_scrl_high {
+            compatible = "zmk,behavior-sensor-rotate-var";
+            #sensor-binding-cells = <2>;
+            bindings = <&msc>, <&msc>;
+
+            tap-ms = <5>;
+        };
     };
 
     macros {
@@ -154,7 +162,7 @@
 &mt LCTRL ESC     &mo 5           &mt LEFT_SHIFT ESCAPE  &kp INS             &lt 2 TAB         &lt 3 SPACE    &lt 3 BACKSPACE  &lt 2 ENTER                             &kp RIGHT_SHIFT      &kp BACKSLASH    &mt RIGHT_SHIFT SLASH
             >;
 
-            sensor-bindings = <&mouse_scrl SCRL_DOWN SCRL_UP>;
+            sensor-bindings = <&mouse_scrl_high SCRL_DOWN SCRL_UP>;
         };
 
         MOUSE {
@@ -174,7 +182,7 @@
 &trans           &trans       &kp MINUS     &kp MINUS  &kp PLUS           &kp EQUAL    &trans  &trans                               &kp ASTERISK           &kp LEFT_PARENTHESIS  &kp LS(QUESTION)
             >;
 
-            sensor-bindings = <&re_kp C_VOLUME_DOWN C_VOLUME_UP>;
+            sensor-bindings = <&mouse_scrl SCRL_LEFT SCRL_RIGHT>;
         };
 
         CURSOR {
